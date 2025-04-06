@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classement - Compétition E-sport</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Compétition E-sport</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="inscription.html">Inscription</a></li>
+                <li><a href="resultats.html">Résultats</a></li>
+                <li><a href="calendrier.html">Calendrier</a></li>
+                <li><a href="classement.html">Classement</a></li>
+                <li><a href="newsletter.html">Newsletter</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="classement">
+            <h2>Classement</h2>
+            
+            <div class="competition-select">
+                <label for="jeu">Sélectionner un jeu:</label>
+                <select id="jeu" name="jeu">
+                    <option value="lol">League of Legends</option>
+                    <option value="fortnite">Fortnite</option>
+                    <option value="cs">Counter-Strike</option>
+                    <option value="valorant">Valorant</option>
+                </select>
+                <button type="button" class="btn-secondary">Afficher</button>
+            </div>
+            
+            <h3>Division 1 - League of Legends</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Position</th>
+                        <th>Joueur</th>
+                        <th>Victoires</th>
+                        <th>Défaites</th>
+                        <th>Points</th>
+                        <th>Statut</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>GameMaster</td>
+                        <td>15</td>
+                        <td>3</td>
+                        <td>45</td>
+                        <td><span class="promotion">Promotion ↑</span></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>ProSniper</td>
+                        <td>14</td>
+                        <td>4</td>
+                        <td>42</td>
+                        <td><span class="promotion">Promotion ↑</span></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>EpicPlayer</td>
+                        <td>12</td>
+                        <td>6</td>
+                        <td>36</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>GamerKing</td>
+                        <td>10</td>
+                        <td>8</td>
+                        <td>30</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Player123</td>
+                        <td>7</td>
+                        <td>11</td>
+                        <td>21</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>QuickShot</td>
+                        <td>5</td>
+                        <td>13</td>
+                        <td>15</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Noobmaster69</td>
+                        <td>3</td>
+                        <td>15</td>
+                        <td>9</td>
+                        <td><span class="relegation">Relégation ↓</span></td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>ProGamer</td>
+                        <td>2</td>
+                        <td>16</td>
+                        <td>6</td>
+                        <td><span class="relegation">Relégation ↓</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>Division 2 - League of Legends</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Position</th>
+                        <th>Joueur</th>
+                        <th>Victoires</th>
+                        <th>Défaites</th>
+                        <th>Points</th>
+                        <th>Statut</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>RisingTalent</td>
+                        <td>16</td>
+                        <td>2</td>
+                        <td>48</td>
+                        <td><span class="promotion">Promotion ↑</span></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>FuturePro</td>
+                        <td>15</td>
+                        <td>3</td>
+                        <td>45</td>
+                        <td><span class="promotion">Promotion ↑</span></td>
+                    </tr>
+                    <!-- autres joueurs -->
+                </tbody>
+            </table>
+            
+            <div class="alert alert-info">
+                <p><strong>Règles de promotion/relégation:</strong></p>
+                <ul>
+                    <li>Les 2 premiers de chaque division sont promus en division supérieure</li>
+                    <li>Les 2 derniers de chaque division sont relégués en division inférieure</li>
+                    <li>Les points sont attribués comme suit: 3 points par victoire, 0 point par défaite</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Compétition E-sport</p>
+    </footer>
+    <script src="app.js"></script>
+</body>
+</html>

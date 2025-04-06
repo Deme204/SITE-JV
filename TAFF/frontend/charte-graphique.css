@@ -1,0 +1,855 @@
+/**
+ * Charte graphique - Site de compétition e-sport
+ * Ce fichier définit les standards visuels et les composants UI réutilisables
+ */
+
+:root {
+    /* Palette de couleurs principale */
+    --primary: #6200EA;       /* Violet électrique - couleur principale */
+    --primary-light: #9D46FF; /* Violet clair pour les survols */
+    --primary-dark: #3700B3;  /* Violet foncé pour les éléments actifs */
+    --secondary: #03DAC6;     /* Turquoise - couleur secondaire */
+    --secondary-light: #66FFF8; /* Turquoise clair */
+    --secondary-dark: #00A896; /* Turquoise foncé */
+    
+    /* Palette de couleurs neutres */
+    --dark: #121212;          /* Fond principal (presque noir) */
+    --dark-light: #2d2d44;    /* Bleu foncé pour les cartes */
+    --light: #F6F6F6;         /* Blanc cassé */
+    --text-primary: #FFFFFF;  /* Texte clair */
+    --text-secondary: #c19fff; /* Texte violet clair */
+    --text-dark: #212121;     /* Texte foncé */
+    
+    /* Couleurs fonctionnelles */
+    --success: #00C853;       /* Vert */
+    --warning: #FFAB00;       /* Orange */
+    --error: #FF3D00;         /* Rouge */
+    --info: #2196F3;          /* Bleu */
+    
+    /* Ombres */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.14);
+    --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.2);
+    
+    /* Espacements */
+    --space-xs: 0.25rem;      /* 4px */
+    --space-sm: 0.5rem;       /* 8px */
+    --space-md: 1rem;         /* 16px */
+    --space-lg: 1.5rem;       /* 24px */
+    --space-xl: 2rem;         /* 32px */
+    --space-xxl: 3rem;        /* 48px */
+    
+    /* Typographie */
+    --font-primary: 'Poppins', sans-serif;
+    --font-secondary: 'Roboto', sans-serif;
+    --font-mono: 'Roboto Mono', monospace;
+    
+    /* Tailles de police */
+    --text-xs: 0.75rem;       /* 12px */
+    --text-sm: 0.875rem;      /* 14px */
+    --text-base: 1rem;        /* 16px */
+    --text-lg: 1.125rem;      /* 18px */
+    --text-xl: 1.25rem;       /* 20px */
+    --text-2xl: 1.5rem;       /* 24px */
+    --text-3xl: 1.875rem;     /* 30px */
+    --text-4xl: 2.25rem;      /* 36px */
+    
+    /* Poids de police */
+    --weight-light: 300;
+    --weight-regular: 400;
+    --weight-medium: 500;
+    --weight-semibold: 600;
+    --weight-bold: 700;
+    
+    /* Arrondis */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-full: 9999px;
+    
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition-normal: 250ms ease;
+    --transition-slow: 350ms ease;
+    
+    /* Z-index */
+    --z-dropdown: 1000;
+    --z-sticky: 1020;
+    --z-fixed: 1030;
+    --z-modal: 1040;
+    --z-popover: 1050;
+    --z-tooltip: 1060;
+    
+    /* Largeurs de conteneur */
+    --container-sm: 640px;
+    --container-md: 768px;
+    --container-lg: 1024px;
+    --container-xl: 1280px;
+}
+
+/* ===== COMPOSANTS DE BASE ===== */
+
+/* Boutons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1.25rem;
+    border-radius: var(--radius-md);
+    font-family: var(--font-primary);
+    font-weight: var(--weight-medium);
+    font-size: var(--text-base);
+    transition: all var(--transition-normal);
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    line-height: 1.5;
+}
+
+.btn:focus {
+    box-shadow: 0 0 0 3px rgba(98, 0, 234, 0.4);
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: var(--text-primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-light);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-primary:active {
+    background-color: var(--primary-dark);
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background-color: var(--secondary);
+    color: var(--text-dark);
+}
+
+.btn-secondary:hover {
+    background-color: var(--secondary-light);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-secondary:active {
+    background-color: var(--secondary-dark);
+    transform: translateY(0);
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+}
+
+.btn-outline:hover {
+    background-color: var(--primary);
+    color: var(--text-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-outline:active {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+    transform: translateY(0);
+}
+
+.btn-sm {
+    padding: 0.25rem 0.75rem;
+    font-size: var(--text-sm);
+    border-radius: var(--radius-sm);
+}
+
+.btn-lg {
+    padding: 0.75rem 1.5rem;
+    font-size: var(--text-lg);
+    border-radius: var(--radius-lg);
+}
+
+/* Cartes */
+.card {
+    background-color: var(--dark-light);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-md);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.card-title {
+    font-size: var(--text-xl);
+    font-weight: var(--weight-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--space-md);
+}
+
+.card-subtitle {
+    font-size: var(--text-base);
+    font-weight: var(--weight-medium);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-md);
+}
+
+.card-body {
+    color: var(--text-primary);
+    font-size: var(--text-base);
+}
+
+.card-footer {
+    margin-top: var(--space-lg);
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-sm);
+}
+
+/* Badges */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-full);
+    font-family: var(--font-primary);
+    font-weight: var(--weight-medium);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.badge-primary {
+    background-color: var(--primary);
+    color: var(--text-primary);
+}
+
+.badge-secondary {
+    background-color: var(--secondary);
+    color: var(--text-dark);
+}
+
+.badge-success {
+    background-color: var(--success);
+    color: var(--text-primary);
+}
+
+.badge-warning {
+    background-color: var(--warning);
+    color: var(--text-dark);
+}
+
+.badge-error {
+    background-color: var(--error);
+    color: var(--text-primary);
+}
+
+.badge-info {
+    background-color: var(--info);
+    color: var(--text-primary);
+}
+
+/* Alertes */
+.alert {
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.alert-success {
+    background-color: rgba(0, 200, 83, 0.15);
+    border-left: 4px solid var(--success);
+    color: var(--success);
+}
+
+.alert-warning {
+    background-color: rgba(255, 171, 0, 0.15);
+    border-left: 4px solid var(--warning);
+    color: var(--warning);
+}
+
+.alert-error {
+    background-color: rgba(255, 61, 0, 0.15);
+    border-left: 4px solid var(--error);
+    color: var(--error);
+}
+
+.alert-info {
+    background-color: rgba(33, 150, 243, 0.15);
+    border-left: 4px solid var(--info);
+    color: var(--info);
+}
+
+/* Formulaires */
+.form-group {
+    margin-bottom: var(--space-lg);
+}
+
+.form-label {
+    display: block;
+    margin-bottom: var(--space-sm);
+    font-weight: var(--weight-medium);
+    color: var(--text-primary);
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: var(--text-base);
+    line-height: 1.5;
+    color: var(--text-primary);
+    background-color: var(--dark-light);
+    border: 2px solid transparent;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-normal);
+}
+
+.form-control:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(98, 0, 234, 0.25);
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.form-text {
+    display: block;
+    margin-top: var(--space-xs);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+}
+
+/* Tableaux */
+.table {
+    width: 100%;
+    margin-bottom: var(--space-lg);
+    color: var(--text-primary);
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: var(--space-md);
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.table th {
+    font-weight: var(--weight-semibold);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.table tbody tr {
+    transition: background-color var(--transition-fast);
+}
+
+.table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* Navigation */
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.nav-link {
+    display: block;
+    padding: var(--space-md) var(--space-lg);
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: color var(--transition-normal);
+    font-weight: var(--weight-medium);
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    color: var(--primary-light);
+}
+
+.nav-link.active {
+    color: var(--primary);
+    font-weight: var(--weight-semibold);
+}
+
+/* Utilities */
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.justify-content-between {
+    justify-content: space-between;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.gap-sm {
+    gap: var(--space-sm);
+}
+
+.gap-md {
+    gap: var(--space-md);
+}
+
+.gap-lg {
+    gap: var(--space-lg);
+}
+
+.mt-1 { margin-top: var(--space-xs); }
+.mt-2 { margin-top: var(--space-sm); }
+.mt-3 { margin-top: var(--space-md); }
+.mt-4 { margin-top: var(--space-lg); }
+.mt-5 { margin-top: var(--space-xl); }
+
+.mb-1 { margin-bottom: var(--space-xs); }
+.mb-2 { margin-bottom: var(--space-sm); }
+.mb-3 { margin-bottom: var(--space-md); }
+.mb-4 { margin-bottom: var(--space-lg); }
+.mb-5 { margin-bottom: var(--space-xl); }
+
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.container {
+    width: 100%;
+    padding-right: var(--space-lg);
+    padding-left: var(--space-lg);
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (min-width: 640px) {
+    .container {
+        max-width: var(--container-sm);
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: var(--container-md);
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        max-width: var(--container-lg);
+    }
+}
+
+@media (min-width: 1280px) {
+    .container {
+        max-width: var(--container-xl);
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.animate-slideInUp {
+    animation: slideInUp 0.5s ease forwards;
+}
+
+.animate-pulse {
+    animation: pulse 2s infinite;
+}
+
+/* Composants spécifiques e-sport */
+
+/* Carte de compétition */
+.competition-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    background-color: var(--dark-light);
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal);
+}
+
+.competition-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+}
+
+.competition-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary-dark) 0%, transparent 50%);
+    opacity: 0.5;
+    z-index: 1;
+    transition: opacity var(--transition-normal);
+}
+
+.competition-card:hover::before {
+    opacity: 0.7;
+}
+
+.competition-card-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.competition-card-content {
+    position: relative;
+    z-index: 2;
+    padding: var(--space-lg);
+}
+
+.competition-card-title {
+    font-size: var(--text-xl);
+    font-weight: var(--weight-bold);
+    color: var(--text-primary);
+    margin-bottom: var(--space-sm);
+}
+
+.competition-card-game {
+    font-size: var(--text-sm);
+    color: var(--secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-md);
+}
+
+.competition-card-date {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-md);
+}
+
+.competition-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.competition-card-price {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+    color: var(--text-primary);
+}
+
+/* Tableau de classement */
+.ranking-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: var(--space-xl);
+}
+
+.ranking-table th,
+.ranking-table td {
+    padding: var(--space-md);
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ranking-table th {
+    font-weight: var(--weight-semibold);
+    color: var(--text-primary);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.ranking-table tbody tr {
+    transition: background-color var(--transition-fast);
+}
+
+.ranking-table tbody tr:hover {
+    background-color: rgba(98, 0, 234, 0.1);
+}
+
+.ranking-position {
+    font-weight: var(--weight-bold);
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.ranking-position-1 {
+    color: gold;
+}
+
+.ranking-position-2 {
+    color: silver;
+}
+
+.ranking-position-3 {
+    color: #cd7f32; /* bronze */
+}
+
+.ranking-player {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.ranking-player-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.ranking-player-name {
+    font-weight: var(--weight-medium);
+    color: var(--text-primary);
+}
+
+.ranking-stats {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+}
+
+.ranking-points {
+    font-weight: var(--weight-bold);
+    color: var(--primary-light);
+}
+
+/* Calendrier des matchs */
+.match-item {
+    display: flex;
+    align-items: center;
+    padding: var(--space-md);
+    margin-bottom: var(--space-md);
+    background-color: var(--dark-light);
+    border-radius: var(--radius-md);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.match-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.match-date {
+    flex: 0 0 120px;
+    text-align: center;
+    padding-right: var(--space-md);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.match-day {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-bold);
+    color: var(--text-primary);
+}
+
+.match-time {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+}
+
+.match-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--space-md);
+}
+
+.match-teams {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.match-team {
+    text-align: center;
+}
+
+.match-team-name {
+    font-weight: var(--weight-medium);
+    color: var(--text-primary);
+}
+
+.match-vs {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    margin: 0 var(--space-md);
+}
+
+.match-game {
+    flex: 0 0 100px;
+    text-align: center;
+    font-size: var(--text-sm);
+    color: var(--secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Formulaire de résultat */
+.result-form {
+    background-color: var(--dark-light);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    margin-bottom: var(--space-xl);
+}
+
+.result-form-title {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-bold);
+    color: var(--text-primary);
+    margin-bottom: var(--space-lg);
+    text-align: center;
+}
+
+.result-form-teams {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xl);
+    margin-bottom: var(--space-xl);
+}
+
+.result-form-team {
+    text-align: center;
+}
+
+.result-form-team-name {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--space-md);
+}
+
+.result-form-score {
+    width: 80px;
+    height: 80px;
+    font-size: var(--text-3xl);
+    font-weight: var(--weight-bold);
+    text-align: center;
+    color: var(--text-primary);
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 2px solid var(--primary);
+    border-radius: var(--radius-md);
+}
+
+.result-form-vs {
+    font-size: var(--text-xl);
+    color: var(--text-secondary);
+}
+
+.result-form-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--space-xl);
+}
+
+/* Loader */
+.loader {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    border-top-color: var(--primary);
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--space-xl) 0;
+}
+
+.loader-text {
+    margin-left: var(--space-md);
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+}

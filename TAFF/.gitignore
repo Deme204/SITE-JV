@@ -1,0 +1,72 @@
+# Dépendances
+node_modules/
+/.pnp
+.pnp.js
+yarn.lock
+package-lock.json
+
+# Variables d'environnement
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Fichiers de build
+/dist
+/build
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Fichiers de couverture de tests
+/coverage
+.nyc_output
+
+# Données temporaires et cache
+.cache/
+.temp/
+/tmp
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Fichiers IDE et éditeurs
+/.idea
+/.vscode
+*.sublime-project
+*.sublime-workspace
+*.iml
+
+# Fichiers spécifiques au projet
+uploads/*
+!uploads/.gitkeep
+
+# Fichiers d'historique de commandes
+node -v
+npm -v
+
+# Fichiers de configuration locale
+.eslintcache
+.stylelintcache
+
+# Fichiers générés par les outils de build
+/.sass-cache
+/.webpack
+/storybook-static
+
+# Base de données locale
+/data
+*.sqlite
+*.sqlite3
+
+# Autres fichiers à ne pas versionner
+*.pem
+*.key
+*.crt
+*.pfx

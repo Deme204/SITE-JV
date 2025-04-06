@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Panneau d'administration de la plateforme de compétition e-sport - Gérez les tournois, les joueurs et les résultats">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="author" content="Équipe E-Sport">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Administration - Compétition E-sport</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    
+    <!-- Préchargement des polices -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/charte-graphique.css">
+    <link rel="stylesheet" href="css/admin.css">
+    
+    <!-- Manifest PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6200EA">
+    
+    <!-- Chart.js pour les graphiques -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Script de sécurité CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:;">
+</head>
+<body class="admin-page">
+    <header class="site-header" role="banner">
+        <div class="container header-container">
+            <div class="logo-container">
+                <h1><a href="index.html" aria-label="Compétition E-sport - Retour à l'accueil">Compétition E-sport</a></h1>
+            </div>
+            
+            <button id="menuToggle" class="menu-toggle" aria-expanded="false" aria-controls="primaryMenu">
+                <span class="sr-only">Menu</span>
+                <span class="hamburger-icon"></span>
+            </button>
+            
+            <nav id="primaryMenu" class="primary-navigation" role="navigation" aria-label="Menu principal">
+                <ul class="main-menu">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="inscription.html">Inscription</a></li>
+                    <li><a href="resultats.html">Résultats</a></li>
+                    <li><a href="calendrier.html">Calendrier</a></li>
+                    <li><a href="classement.html">Classement</a></li>
+                    <li><a href="newsletter.html">Newsletter</a></li>
+                    <li><a href="reglement.html">Règlement</a></li>
+                    <li class="current-menu-item"><a href="administration.html" aria-current="page">Administration</a></li>
+                </ul>
+            </nav>
+        </div>
+        
+        <!-- Barre d'administration -->
+        <div class="admin-bar">
+            <div class="container">
+                <div class="admin-user-info">
+                    <span class="admin-avatar">👤</span>
+                    <span class="admin-name">Administrateur</span>
+                </div>
+                <div class="admin-actions">
+                    <a href="#" class="admin-logout">Déconnexion</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="admin-main" role="main">
+        <div class="container">
+            <!-- Tableau de bord principal -->
+            <section id="admin-dashboard" class="admin-section">
+                <header class="section-header">
+                    <h2><i class="icon-dashboard"></i> Tableau de bord</h2>
+                </header>
+                
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <div class="stat-value">12</div>
+                        <div class="stat-label">Compétitions actives</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">256</div>
+                        <div class="stat-label">Joueurs inscrits</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">48</div>
+                        <div class="stat-label">Matchs aujourd'hui</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">85%</div>
+                        <div class="stat-label">Taux de participation</div>
+                    </div>
+                </div>
+                
+                <div class="quick-actions">
+                    <button class="btn btn-primary" data-action="new-competition">
+                        <i class="icon-plus"></i> Nouvelle compétition
+                    </button>
+                    <button class="btn btn-secondary" data-action="export-data">
+                        <i class="icon-download"></i> Exporter les données
+                    </button>
+                    <button class="btn btn-tertiary" data-action="system-status">
+                        <i class="icon-chart"></i> État du système
+                    </button>
+                </div>
+            </section>
+            
+            <!-- Tabs de navigation admin -->
+            <div class="admin-tabs">
+                <button class="tab-button active" data-tab="competitions">Compétitions</button>
+                <button class="tab-button" data-tab="joueurs">Joueurs</button>
+                <button class="tab-button" data-tab="resultats">Résultats</button>
+                <button class="tab-button" data-tab="paiements">Paiements</button>
+                <button class="tab-button" data-tab="parametres">Paramètres</button>
+            </div>
+            
+            <!-- Contenus des tabs -->
+            <div class="tab-content active" id="competitions-tab">
+                <section class="admin-section">
+                    <header class="section-header with-actions">
+                        <h3>Gestion des compétitions</h3>
+                        <div class="section-actions">
+                            <button class="btn btn-sm btn-success" id="btnAddCompetition">
+                                <i class="icon-plus"></i> Ajouter
+                            </button>
+                            <div class="search-wrapper">
+                                <input type="search" id="searchCompetition" placeholder="Rechercher..." aria-label="Rechercher une compétition">
+                            </div>
+                        </div>
+                    </header>
+                    
+                    <div class="responsive-table-wrapper">
+                        <table class="admin-table" aria-label="Liste des compétitions">
+                            <thead>
+                                <tr>
+                                    <th scope="col">
+                                        <input type="checkbox" id="selectAllCompetitions" aria-label="Sélectionner toutes les compétitions">
+                                    </th>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Jeu</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Participants</th>
+                                    <th scope="col">Statut</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="checkbox" name="selectCompetition" value="1"></td>
+                                    <td>Coupe Nationale 2025</td>
+                                    <td>League of Legends</td>
+                                    <td>05/04/2025</td>
+                                    <td>48/64</td>
+                                    <td><span class="badge badge-success">Active</span></td>
+                                    <td class="actions-cell">
+                                        <button class="btn-icon" aria-label="Modifier" title="Modifier">✎</button>
+                                        <button class="btn-icon" aria-label="Supprimer" title="Supprimer">❌</button>
+                                        <button class="btn-icon" aria-label="Voir détails" title="Voir détails">👁️</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="selectCompetition" value="2"></td>
+                                    <td>ESL Pro Series</td>
+                                    <td>Counter-Strike 2</td>
+                                    <td>12/04/2025</td>
+                                    <td>32/32</td>
+                                    <td><span class="badge badge-warning">En attente</span></td>
+                                    <td class="actions-cell">
+                                        <button class="btn-icon" aria-label="Modifier" title="Modifier">✎</button>
+                                        <button class="btn-icon" aria-label="Supprimer" title="Supprimer">❌</button>
+                                        <button class="btn-icon" aria-label="Voir détails" title="Voir détails">👁️</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="selectCompetition" value="3"></td>
+                                    <td>Tournoi Rocket League</td>
+                                    <td>Rocket League</td>
+                                    <td>15/04/2025</td>
+                                    <td>24/24</td>
+                                    <td><span class="badge badge-info">Inscription terminée</span></td>
+                                    <td class="actions-cell">
+                                        <button class="btn-icon" aria-label="Modifier" title="Modifier">✎</button>
+                                        <button class="btn-icon" aria-label="Supprimer" title="Supprimer">❌</button>
+                                        <button class="btn-icon" aria-label="Voir détails" title="Voir détails">👁️</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="table-pagination">
+                        <div class="pagination-info">Affichage de 1-3 sur 12 compétitions</div>
+                        <div class="pagination-controls">
+                            <button class="btn-pagination" disabled aria-label="Page précédente">&laquo;</button>
+                            <button class="btn-pagination active">1</button>
+                            <button class="btn-pagination">2</button>
+                            <button class="btn-pagination">3</button>
+                            <button class="btn-pagination">4</button>
+                            <button class="btn-pagination" aria-label="Page suivante">&raquo;</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <div class="tab-content" id="joueurs-tab">
+                <section class="admin-section">
+                    <header class="section-header">
+                        <h3>Gestion des joueurs</h3>
+                    </header>
+                    <p class="placeholder-text">Contenu de la gestion des joueurs - Cliquez sur un onglet pour afficher son contenu.</p>
+                </section>
+            </div>
+            
+            <div class="tab-content" id="resultats-tab">
+                <section class="admin-section">
+                    <header class="section-header">
+                        <h3>Gestion des résultats</h3>
+                    </header>
+                    <p class="placeholder-text">Contenu de la gestion des résultats - Cliquez sur un onglet pour afficher son contenu.</p>
+                </section>
+            </div>
+            
+            <div class="tab-content" id="paiements-tab">
+                <section class="admin-section">
+                    <header class="section-header">
+                        <h3>Gestion des paiements</h3>
+                    </header>
+                    <p class="placeholder-text">Contenu de la gestion des paiements - Cliquez sur un onglet pour afficher son contenu.</p>
+                </section>
+            </div>
+            
+            <div class="tab-content" id="parametres-tab">
+                <section class="admin-section">
+                    <header class="section-header">
+                        <h3>Paramètres du site</h3>
+                    </header>
+                    <p class="placeholder-text">Contenu des paramètres - Cliquez sur un onglet pour afficher son contenu.</p>
+                </section>
+            </div>
+            
+            <!-- Section État du système -->
+            <div class="tab-content" id="systeme-tab">
+                <section class="admin-section">
+                    <header class="section-header with-actions">
+                        <h3>État du système</h3>
+                        <div class="section-actions">
+                            <button class="btn btn-primary" id="refreshSystemStatus">
+                                <i class="icon-refresh"></i> Actualiser
+                            </button>
+                        </div>
+                    </header>
+                    
+                    <!-- Aperçu de l'état du système -->
+                    <div class="system-status-summary">
+                        <div class="status-card">
+                            <div class="status-icon status-optimal">✓</div>
+                            <div class="status-title">Base de données</div>
+                            <div class="status-value" data-component="database">Optimal</div>
+                            <div class="status-description">Connexion et performances normales</div>
+                        </div>
+                        
+                        <div class="status-card">
+                            <div class="status-icon status-optimal">✓</div>
+                            <div class="status-title">API</div>
+                            <div class="status-value" data-component="api">Optimal</div>
+                            <div class="status-description">Tous les endpoints sont disponibles</div>
+                        </div>
+                        
+                        <div class="status-card">
+                            <div class="status-icon status-good">✓</div>
+                            <div class="status-title">Système de fichiers</div>
+                            <div class="status-value" data-component="fileSystem">Bon</div>
+                            <div class="status-description">Espace disque: 78% disponible</div>
+                        </div>
+                        
+                        <div class="status-card">
+                            <div class="status-icon status-optimal">✓</div>
+                            <div class="status-title">Cache</div>
+                            <div class="status-value" data-component="cache">Optimal</div>
+                            <div class="status-description">Fonctionnement efficace</div>
+                        </div>
+                        
+                        <div class="status-card">
+                            <div class="status-icon status-optimal">✓</div>
+                            <div class="status-title">Sécurité</div>
+                            <div class="status-value" data-component="security">Optimal</div>
+                            <div class="status-description">Aucun problème détecté</div>
+                        </div>
+                        
+                        <div class="status-card">
+                            <div class="status-icon status-good">✓</div>
+                            <div class="status-title">Performance</div>
+                            <div class="status-value" data-component="performance">Bon</div>
+                            <div class="status-description">Temps de réponse satisfaisants</div>
+                        </div>
+                        
+                        <div class="status-card">
+                            <div class="status-icon status-warning">⚠️</div>
+                            <div class="status-title">Intégrations</div>
+                            <div class="status-value" data-component="integrations">Attention</div>
+                            <div class="status-description">API de paiement: ralentissements</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Détails de l'état du système -->
+                    <div class="system-details-container">
+                        <h4>Détails techniques</h4>
+                        
+                        <div class="system-info-grid">
+                            <div class="system-info-item">
+                                <span class="info-label">Uptime serveur</span>
+                                <span class="info-value" id="serverUptime">99.98%</span>
+                            </div>
+                            
+                            <div class="system-info-item">
+                                <span class="info-label">Charge CPU</span>
+                                <span class="info-value" id="cpuLoad">23%</span>
+                            </div>
+                            
+                            <div class="system-info-item">
+                                <span class="info-label">Utilisation mémoire</span>
+                                <span class="info-value" id="memoryUsage">1.8 GB / 8 GB</span>
+                            </div>
+                            
+                            <div class="system-info-item">
+                                <span class="info-label">Dernière vérification</span>
+                                <span class="info-value" id="lastSystemCheck">04/04/2025 00:25</span>
+                            </div>
+                        </div>
+                        
+                        <div class="system-actions-grid">
+                            <button class="btn btn-secondary" data-action="system-scan">
+                                <i class="icon-scan"></i> Scanner le système
+                            </button>
+                            
+                            <button class="btn btn-secondary" data-action="clear-cache">
+                                <i class="icon-clean"></i> Vider le cache
+                            </button>
+                            
+                            <button class="btn btn-secondary" data-action="rebuild-index">
+                                <i class="icon-rebuild"></i> Reconstruire l'index
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Journaux du système -->
+                    <div class="system-logs-container">
+                        <div class="logs-header">
+                            <h4>Journaux système récents</h4>
+                            <select id="logTypeFilter">
+                                <option value="all">Tous les journaux</option>
+                                <option value="error">Erreurs</option>
+                                <option value="warning">Avertissements</option>
+                                <option value="info">Informations</option>
+                            </select>
+                        </div>
+                        
+                        <div id="systemLogs" class="system-logs">
+                            <ul class="logs-list">
+                                <li class="log-item log-info">
+                                    <span class="log-time">04/04/2025 00:25:12</span>
+                                    <span class="log-level">INFO</span>
+                                    <span class="log-component">[Auth]</span>
+                                    <span class="log-message">Connexion réussie pour l'administrateur admin@esport.com</span>
+                                </li>
+                                <li class="log-item log-warning">
+                                    <span class="log-time">04/04/2025 00:15:08</span>
+                                    <span class="log-level">WARN</span>
+                                    <span class="log-component">[API]</span>
+                                    <span class="log-message">Ralentissement détecté sur l'API de paiement</span>
+                                </li>
+                                <li class="log-item log-info">
+                                    <span class="log-time">03/04/2025 23:50:31</span>
+                                    <span class="log-level">INFO</span>
+                                    <span class="log-component">[Système]</span>
+                                    <span class="log-message">Sauvegarde automatique démarrée</span>
+                                </li>
+                                <li class="log-item log-info">
+                                    <span class="log-time">03/04/2025 23:50:45</span>
+                                    <span class="log-level">INFO</span>
+                                    <span class="log-component">[Système]</span>
+                                    <span class="log-message">Sauvegarde terminée avec succès</span>
+                                </li>
+                                <li class="log-item log-error">
+                                    <span class="log-time">03/04/2025 22:12:06</span>
+                                    <span class="log-level">ERROR</span>
+                                    <span class="log-component">[Database]</span>
+                                    <span class="log-message">Erreur de connexion temporaire - Tentative de reconnexion réussie</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Modal pour ajouter/modifier une compétition -->
+            <div id="competitionModal" class="modal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 id="modalTitle">Ajouter une compétition</h3>
+                        <button class="close-modal" aria-label="Fermer">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="competitionForm">
+                            <div class="form-group">
+                                <label for="compNom">Nom de la compétition</label>
+                                <input type="text" id="compNom" name="nom" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="compJeu">Jeu</label>
+                                <select id="compJeu" name="jeu" required>
+                                    <option value="">Sélectionnez un jeu</option>
+                                    <option value="lol">League of Legends</option>
+                                    <option value="cs2">Counter-Strike 2</option>
+                                    <option value="valorant">Valorant</option>
+                                    <option value="rl">Rocket League</option>
+                                    <option value="fifa">EA Sports FC 25</option>
+                                    <option value="fortnite">Fortnite</option>
+                                </select>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-half">
+                                    <label for="compDate">Date</label>
+                                    <input type="date" id="compDate" name="date" required>
+                                </div>
+                                <div class="form-group col-half">
+                                    <label for="compHeure">Heure</label>
+                                    <input type="time" id="compHeure" name="heure" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-half">
+                                    <label for="compMaxJoueurs">Nombre max. de participants</label>
+                                    <input type="number" id="compMaxJoueurs" name="maxJoueurs" min="2" required>
+                                </div>
+                                <div class="form-group col-half">
+                                    <label for="compFormat">Format</label>
+                                    <select id="compFormat" name="format" required>
+                                        <option value="elimination">Elimination directe</option>
+                                        <option value="poules">Poules + playoffs</option>
+                                        <option value="suisse">Système suisse</option>
+                                        <option value="roundrobin">Toutes rondes</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="compDescription">Description</label>
+                                <textarea id="compDescription" name="description" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="compPrix">Prix d'inscription (€)</label>
+                                <input type="number" id="compPrix" name="prix" min="0" step="0.01">
+                            </div>
+                            <div class="form-group form-checkbox">
+                                <input type="checkbox" id="compPublie" name="publie" checked>
+                                <label for="compPublie">Publier immédiatement</label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-tertiary" data-action="close-modal">Annuler</button>
+                        <button type="button" class="btn btn-primary" id="saveCompetition">Enregistrer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Compétition E-sport</h4>
+                    <p>Plateforme de gestion de tournois e-sport et de compétitions en ligne.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Accès rapide</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="calendrier.html">Calendrier</a></li>
+                        <li><a href="resultats.html">Résultats</a></li>
+                        <li><a href="classement.html">Classement</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support administrateur</h4>
+                    <ul class="footer-links">
+                        <li><a href="documentation-admin.html">Documentation</a></li>
+                        <li><a href="#">Centre d'aide</a></li>
+                        <li><a href="mailto:support@esport-competition.com">Contact support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Compétition E-sport | <a href="mentions-legales.html">Mentions légales</a> | <a href="confidentialite.html">Politique de confidentialité</a></p>
+                <p><small>Version 2.5.1 - Dernière mise à jour: 04/04/2025</small></p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Modal d'exportation des données -->
+    <div id="exportModal" class="modal" role="dialog" aria-labelledby="exportModalTitle" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="exportModalTitle">Exporter les données</h3>
+                <button class="close-modal" aria-label="Fermer">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="exportForm">
+                    <div class="form-group">
+                        <label for="exportType">Type de données</label>
+                        <select id="exportType" name="exportType" required>
+                            <option value="">Sélectionnez un type de données</option>
+                            <option value="competitions">Compétitions</option>
+                            <option value="players">Joueurs</option>
+                            <option value="results">Résultats</option>
+                            <option value="payments">Paiements</option>
+                            <option value="all">Toutes les données</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="exportFormat">Format d'exportation</label>
+                        <select id="exportFormat" name="exportFormat" required>
+                            <option value="csv">CSV</option>
+                            <option value="json">JSON</option>
+                            <option value="excel">Excel</option>
+                            <option value="pdf">PDF</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dateRangeStart">Période - Date de début</label>
+                        <input type="date" id="dateRangeStart" name="dateRangeStart">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dateRangeEnd">Période - Date de fin</label>
+                        <input type="date" id="dateRangeEnd" name="dateRangeEnd">
+                    </div>
+                    
+                    <div class="form-group form-checkbox">
+                        <input type="checkbox" id="anonymizeData" name="anonymizeData">
+                        <label for="anonymizeData">Anonymiser les données personnelles</label>
+                    </div>
+                    
+                    <div class="form-group form-checkbox">
+                        <input type="checkbox" id="includeMeta" name="includeMeta" checked>
+                        <label for="includeMeta">Inclure les métadonnées</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-tertiary" data-action="close-export-modal">Annuler</button>
+                <button type="button" class="btn btn-primary" id="startExport">Démarrer l'exportation</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+    <script src="js/admin-main.js"></script>
+    <script src="js/admin-competitions.js"></script>
+    <script src="js/admin-data-export.js"></script>
+    <script src="js/admin-system-status.js"></script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résultats - Compétition E-sport</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Compétition E-sport</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="inscription.html">Inscription</a></li>
+                <li><a href="resultats.html">Résultats</a></li>
+                <li><a href="calendrier.html">Calendrier</a></li>
+                <li><a href="classement.html">Classement</a></li>
+                <li><a href="newsletter.html">Newsletter</a></li>
+                <li><a href="reglement.html">Règlement</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="resultats">
+            <h2>Résultats</h2>
+            <div class="alert alert-info">
+                <p>Tous les résultats doivent être validés par les deux participants pour être officiels.</p>
+            </div>
+            
+            <h3>Matchs à venir</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>Joueur 1</th>
+                        <th>Joueur 2</th>
+                        <th>Jeu</th>
+                        <th>Statut</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>M001</td>
+                        <td>05/04/2025</td>
+                        <td>Player123</td>
+                        <td>GameMaster</td>
+                        <td>League of Legends</td>
+                        <td>Programmé</td>
+                    </tr>
+                    <tr>
+                        <td>M002</td>
+                        <td>07/04/2025</td>
+                        <td>ProGamer</td>
+                        <td>Noobmaster69</td>
+                        <td>Fortnite</td>
+                        <td>Programmé</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>Matchs en attente de validation</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>Joueur 1</th>
+                        <th>Joueur 2</th>
+                        <th>Résultat</th>
+                        <th>Validation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>M003</td>
+                        <td>01/04/2025</td>
+                        <td>EpicPlayer</td>
+                        <td>GamerKing</td>
+                        <td>2-1</td>
+                        <td>1/2 validations</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>Matchs terminés</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>Joueur 1</th>
+                        <th>Joueur 2</th>
+                        <th>Résultat</th>
+                        <th>Vainqueur</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>M004</td>
+                        <td>28/03/2025</td>
+                        <td>ProSniper</td>
+                        <td>QuickShot</td>
+                        <td>3-0</td>
+                        <td>ProSniper</td>
+                    </tr>
+                    <tr>
+                        <td>M005</td>
+                        <td>27/03/2025</td>
+                        <td>Noobmaster69</td>
+                        <td>GameMaster</td>
+                        <td>1-3</td>
+                        <td>GameMaster</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>Soumettre un résultat</h3>
+            <form id="formValidation">
+                <div class="competition-select">
+                    <label for="matchId">Match :</label>
+                    <select id="matchId" name="matchId" required>
+                        <option value="">-- Sélectionnez un match --</option>
+                        <option value="M001">M001 - Player123 vs GameMaster</option>
+                        <option value="M002">M002 - ProGamer vs Noobmaster69</option>
+                        <option value="M003">M003 - EpicPlayer vs GamerKing</option>
+                    </select>
+                </div>
+                
+                <label for="resultat">Résultat (ex: 2-1) :</label>
+                <input type="text" id="resultat" name="resultat" placeholder="Format: X-Y" required>
+                
+                <label for="commentaire">Commentaire (optionnel) :</label>
+                <input type="text" id="commentaire" name="commentaire" placeholder="Commentaire sur le match">
+                
+                <div class="alert alert-warning">
+                    <p>En soumettant ce résultat, vous certifiez qu'il est exact.</p>
+                </div>
+                
+                <button type="submit">Soumettre le résultat</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Compétition E-sport</p>
+    </footer>
+    <script src="app.js"></script>
+</body>
+</html>
